@@ -1,46 +1,45 @@
-<style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
+<script context="module">
+  import initApollo from '../lib/initApollo';
+  import { GET_GAMES } from '../schemas/games';
+  import cookie from 'cookie'
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
+  function parseCookies (req, options) {
+    return cookie.parse(req.headers ? req.headers.cookie || '' : document.cookie, options);
+  }
 
-	figure {
-		margin: 0 0 1em 0;
-	}
+  export async function preload(_, session) {
+    const client = initApollo({
+      getToken: () => parseCookies(session).token
+    });
 
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
+    const cache = await client.query({
+      query: GET_GAMES
+    });
 
-	p {
-		margin: 1em auto;
-	}
+    return {
+      cache,
+      client
+    }
+  }
+</script>
 
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
-</style>
+<script>
+  import { setClient, restore, query } from 'svelte-apollo';
+  import { setContext } from 'svelte';
 
-<svelte:head>
-	<title>Sapper project template</title>
-</svelte:head>
+  export let cache;
+  export let client;
+  restore(client, GET_GAMES, cache.data);
+  setClient(client);
 
-<h1>Great success!</h1>
+  // query a subset of the preloaded (the rest if for Account)
+  const data = query(client, {query: GET_GAMES});
+</script>
 
-<figure>
-	<img alt='Borat' src='great-success.png'>
-	<figcaption>HIGH FIVE!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+{#await $data}
+  Loading won't be shown if sufficient data loaded in preload
+{:then result}
+  {#each result.data.games as game}
+    {game.red.score}
+  {/each}
+{/await}
