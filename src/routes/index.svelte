@@ -1,11 +1,7 @@
 <script context="module">
-  import initApollo from '../lib/initApollo';
-  import { GET_GAMES } from '../schemas/games';
-  import cookie from 'cookie'
-
-  function parseCookies (req, options) {
-    return cookie.parse(req.headers ? req.headers.cookie || '' : document.cookie, options);
-  }
+  import initApollo from '../lib/initApollo'
+  import parseCookies from '../lib/apollo'
+  import { GET_GAMES } from '../schemas/games'
 
   export async function preload(_, session) {
     const client = initApollo({
@@ -24,8 +20,7 @@
 </script>
 
 <script>
-  import { setClient, restore, query } from 'svelte-apollo';
-  import { setContext } from 'svelte';
+  import { setClient, restore, query } from 'svelte-apollo'
 
   export let cache;
   export let client;

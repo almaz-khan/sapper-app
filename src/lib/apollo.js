@@ -1,6 +1,5 @@
-import 'isomorphic-fetch';
-import ApolloClient from 'apollo-boost';
+import cookie from 'cookie'
 
-export const client = new ApolloClient({
-  uri: 'http://localhost:9090/graphql'
-});
+export default function parseCookies (req, options) {
+  return cookie.parse(req.headers ? req.headers.cookie || '' : document.cookie, options);
+}

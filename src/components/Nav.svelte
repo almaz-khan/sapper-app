@@ -1,5 +1,6 @@
 <script>
-	export let segment;
+  export let segment;
+  export let loggedInUser;
 </script>
 
 <style>
@@ -51,5 +52,9 @@
 <nav>
 	<ul>
 		<li><a class='{segment === undefined ? "selected" : ""}' href='.'>home</a></li>
+    {#if !loggedInUser || !loggedInUser.username}
+      <li><a class='{segment === 'signin' ? "selected" : ""}' href='/signin'>sign in</a></li>
+      <li><a class='{segment === 'signin' ? "selected" : ""}' href='/signup'>sign up</a></li>
+    {/if}
 	</ul>
 </nav>

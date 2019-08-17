@@ -1,7 +1,26 @@
+<script context="module">
+  import initApollo from '../lib/initApollo'
+  import getLoggedInUser from '../lib/checkLoggedIn'
+  import parseCookies from '../lib/apollo'
+
+  export async function preload(_, session) {
+    const client = initApollo({
+      getToken: () => parseCookies(session).token
+    });
+
+    const user = await getLoggedInUser(client);
+
+    return {
+      user
+    }
+  }
+</script>
+
 <script>
   import Nav from '../components/Nav.svelte';
 
   export let segment;
+  export let user;
 </script>
 
 <style>
@@ -15,7 +34,7 @@
 	}
 </style>
 
-<Nav {segment}/>
+<Nav {segment} {...user}/>
 
 <main>
 	<slot></slot>
