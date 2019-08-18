@@ -6,7 +6,7 @@
     "dev": "sapper dev",
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",
-    "start": "nodemon __sapper__/build",
+    "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run"
@@ -41,7 +41,6 @@
     "rollup-plugin-terser": "^5.1.1",
     "sapper": "^0.27.0",
     "svelte": "^3.0.0",
-    "svelte-apollo": "^0.3.0",
-    "nodemon": "^1.19.1"
+    "svelte-apollo": "^0.3.0"
   }
 }
