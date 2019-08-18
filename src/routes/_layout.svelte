@@ -30,12 +30,50 @@
 		background-color: white;
 		padding: 2em;
 		margin: 0 auto;
-		box-sizing: border-box;
-	}
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 700px) {
+    main {
+      padding: .5em;
+    }
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .menu {
+    flex: 0 1 auto;
+  }
+
+  .container {
+    flex: 1 0 auto;
+    position: relative;
+  }
+
+  .content {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    overflow: auto;
+  }
 </style>
 
-<Nav {segment} {...user}/>
+<div class="wrapper">
+  <div class="menu">
+    <Nav {segment} {...user} />
+  </div>
 
-<main>
-	<slot></slot>
-</main>
+  <div class="container">
+    <div class="content">
+      <main>
+        <slot></slot>
+      </main>
+    </div>
+  </div>
+</div>

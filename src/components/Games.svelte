@@ -13,7 +13,7 @@
   }
 
   .team {
-    flex: 1 0 auto;
+    flex: 1 0 50%;
     display: flex;
   }
 
@@ -85,6 +85,12 @@
   .blue .offense:before {
     right: 3px;
   }
+
+  @media (max-width: 700px) {
+    .player {
+      display: block;
+    }
+  }
 </style>
 
 <div class="wrapper">
@@ -93,10 +99,10 @@
       <div class="team blue">
         <div class="players">
           <span class="player defense">
-            {game.blue.defense.firstName} {game.blue.defense.lastName}
+            {game.blue.defense.firstName} {game.blue.defense.lastName.slice(0, 1).toUpperCase()}.
           </span>
           <span class="player offense">
-            {game.blue.offense.firstName} {game.blue.offense.lastName}
+            {game.blue.offense.firstName} {game.blue.offense.lastName.slice(0, 1).toUpperCase()}.
           </span>
         </div>
         <div class="score">{game.blue.score}</div>
@@ -106,10 +112,10 @@
         <div class="score">{game.red.score}</div>
         <div class="players">
           <span class="player offense">
-            {game.red.offense.firstName} {game.red.offense.lastName}
+            {game.red.offense.firstName} {game.red.offense.lastName.slice(0, 1).toUpperCase()}.
           </span>
           <span class="player defense">
-            {game.red.defense.firstName} {game.red.defense.lastName}
+            {game.red.defense.firstName} {game.red.defense.lastName.slice(0, 1).toUpperCase()}.
           </span>
         </div>
       </div>

@@ -4,6 +4,9 @@ export const GET_GAMES = gql`
 {
   games {
     _id,
+    startDate,
+    endDate,
+    source,
     red {
       score,
       offense {
@@ -32,4 +35,25 @@ export const GET_GAMES = gql`
     }
   }
 }
+`;
+
+export const ADD_GAME = gql`
+  mutation AddGame($input: GameInput!) {
+    addGame(
+      input: $input
+    ){
+      red{
+        defense{
+          lastName
+          firstName
+        }
+      }
+      blue{
+        defense{
+          lastName
+          firstName
+        }
+      }
+    }
+  }
 `;
