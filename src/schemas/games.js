@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost';
 
 export const GET_GAMES = gql`
-{
-  games {
+query GetGame($limit: Int, $skip: Int, $query: GameFilter) {
+  games(limit: $limit, skip: $skip, query: $query) {
     _id,
     startDate,
     endDate,

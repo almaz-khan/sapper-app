@@ -70,7 +70,7 @@
 		<li><a class='{segment === undefined ? "selected" : ""}' href='.'>games</a></li>
     {#if !loggedInUser || !loggedInUser.username}
       <li><a class='{segment === 'signin' ? "selected" : ""}' href='/signin'>sign in</a></li>
-      <li><a class='{segment === 'signin' ? "selected" : ""}' href='/signup'>sign up</a></li>
+      <li><a class='{segment === 'signup' ? "selected" : ""}' href='/signup'>sign up</a></li>
     {:else}
       <li><a class='{segment === 'games' ? "selected" : ""}' href='/games/new'>add game</a></li>
     {/if}

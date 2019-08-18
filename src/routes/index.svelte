@@ -2,6 +2,7 @@
   import initApollo from '../lib/initApollo'
   import parseCookies from '../lib/apollo'
   import { GET_GAMES } from '../schemas/games'
+  import moment from 'moment';
 
   export async function preload(_, session) {
     const client = initApollo({
@@ -9,7 +10,14 @@
     });
 
     const cache = await client.query({
-      query: GET_GAMES
+      query: GET_GAMES,
+      variables: {
+        query: {
+          startDate: {
+            gte: moment().subtract(30, 'days').format(moment.defaultFormatUtc)
+          }
+        }
+      }
     });
 
     return {
