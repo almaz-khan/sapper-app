@@ -4,6 +4,7 @@ import { setContext } from 'apollo-link-context'
 import fetch from 'isomorphic-unfetch'
 
 let apolloClient = null
+const uri = process.env.GRAPH_QL_URI || 'http://localhost:9090/graphql';
 
 // Polyfill fetch() on the server (used by apollo-client)
 if (typeof window === 'undefined') {
@@ -12,7 +13,7 @@ if (typeof window === 'undefined') {
 
 function create ({ getToken, fetchOptions }) {
   const httpLink = createHttpLink({
-    uri: 'http://localhost:9090/graphql',
+    uri,
     credentials: 'same-origin',
     fetchOptions
   })

@@ -8,6 +8,7 @@ import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
 
 const mode = process.env.NODE_ENV;
+const graphQLURI = process.env.GRAPH_QL_URI;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
@@ -21,7 +22,8 @@ export default {
 		plugins: [
 			replace({
 				'process.browser': true,
-				'process.env.NODE_ENV': JSON.stringify(mode)
+        'process.env.NODE_ENV': JSON.stringify(mode),
+        'process.env.GRAPH_QL_URI': JSON.stringify(graphQLURI)
 			}),
 			svelte({
 				dev,
