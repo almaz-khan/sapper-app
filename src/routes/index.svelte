@@ -21,6 +21,7 @@
 
 <script>
   import { setClient, restore, query } from 'svelte-apollo'
+  import Games from '../components/Games.svelte'
 
   export let cache;
   export let client;
@@ -34,7 +35,5 @@
 {#await $data}
   Loading won't be shown if sufficient data loaded in preload
 {:then result}
-  {#each result.data.games as game}
-    {game.red.score}
-  {/each}
+  <Games {...result.data} />
 {/await}

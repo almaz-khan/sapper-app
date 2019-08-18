@@ -7,7 +7,8 @@
 	nav {
 		border-bottom: 1px solid rgba(255,62,0,0.1);
 		font-weight: 300;
-		padding: 0 1em;
+    padding: 0 1em;
+    position: relative;
 	}
 
 	ul {
@@ -46,15 +47,35 @@
 		text-decoration: none;
 		padding: 1em 0.5em;
 		display: block;
-	}
+  }
+
+  .user {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 15px;
+    background-color: peachpuff;
+    color: slategray;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 30px;
+  }
 </style>
 
 <nav>
 	<ul>
-		<li><a class='{segment === undefined ? "selected" : ""}' href='.'>home</a></li>
+		<li><a class='{segment === undefined ? "selected" : ""}' href='.'>games</a></li>
     {#if !loggedInUser || !loggedInUser.username}
       <li><a class='{segment === 'signin' ? "selected" : ""}' href='/signin'>sign in</a></li>
       <li><a class='{segment === 'signin' ? "selected" : ""}' href='/signup'>sign up</a></li>
     {/if}
 	</ul>
+  {#if loggedInUser && loggedInUser.username}
+    <div class="user" title="{loggedInUser.username}">
+      {loggedInUser.username.slice(0, 1)}
+    </div>
+  {/if}
 </nav>
