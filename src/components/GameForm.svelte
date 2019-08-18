@@ -70,6 +70,9 @@
     border-bottom: 2px solid rgba(0, 0, 255, .3);
   }
 
+  button {
+    font-size: 1rem;
+  }
 
   @media (max-width: 700px) {
     .form {

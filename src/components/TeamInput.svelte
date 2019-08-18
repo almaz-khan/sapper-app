@@ -35,8 +35,13 @@
 
   input {
     width: 30px;
+    font-size: 1rem;
   }
 
+  select,
+  option {
+    font-size: 1rem;
+  }
 </style>
 
 <span class="defense">

@@ -14,7 +14,7 @@
       variables: {
         query: {
           startDate: {
-            gte: moment().subtract(30, 'days').format(moment.defaultFormatUtc)
+            gte: moment().subtract(15, 'days').format(moment.defaultFormatUtc)
           }
         }
       }
