@@ -37,7 +37,8 @@ code {
 }
 
 @media (max-width: 700px) {
-	html {
+  html,
+  body {
 		font-size: 18px;
 	}
 }
