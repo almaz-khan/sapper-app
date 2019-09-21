@@ -4,7 +4,7 @@ import { setContext } from 'apollo-link-context';
 import fetch from 'isomorphic-unfetch';
 
 let apolloClient = null;
-const uri = process.env.HOME || 'http://localhost:3000/graphql/';
+const uri = process.env.HOST_URI || 'http://localhost:3000/graphql/';
 
 function create({ fetchOptions }, token) {
   const httpLink = createHttpLink({
