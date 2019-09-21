@@ -45,23 +45,32 @@
 </style>
 
 <span class="defense">
-  <select bind:value={team.defense} on:change={() => { onChange(team) }}>
+  <select
+    bind:value={team.defense}
+    on:change={() => {
+      onChange(team);
+    }}>
     {#each players as player}
-      <option value={player._id}>
-        {player.firstName} {player.lastName}
-      </option>
+      <option value={player._id}>{player.firstName} {player.lastName}</option>
     {/each}
   </select>
 </span>
 
 <span class="offense">
-  <select bind:value={team.offense} on:change={() => { onChange(team) }}>
+  <select
+    bind:value={team.offense}
+    on:change={() => {
+      onChange(team);
+    }}>
     {#each players as player}
-      <option value={player._id}>
-        {player.firstName} {player.lastName}
-      </option>
+      <option value={player._id}>{player.firstName} {player.lastName}</option>
     {/each}
   </select>
 </span>
 
-<input type="number" bind:value={team.score} on:change={() => { onChange(team) }}>
+<input
+  type="number"
+  bind:value={team.score}
+  on:change={() => {
+    onChange(team);
+  }} />

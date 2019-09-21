@@ -1,17 +1,17 @@
-import { ApolloClient, InMemoryCache } from 'apollo-boost'
-import { createHttpLink } from 'apollo-link-http'
-import { setContext } from 'apollo-link-context'
-import fetch from 'isomorphic-unfetch'
+import { ApolloClient, InMemoryCache } from 'apollo-boost';
+import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
+import fetch from 'isomorphic-unfetch';
 
-let apolloClient = null
-const uri = `http://localhost:3000/graphql/`;
+let apolloClient = null;
+const uri = process.env.HOME || 'http://localhost:3000/graphql/';
 
-function create ({ fetchOptions }, token) {
+function create({ fetchOptions }, token) {
   const httpLink = createHttpLink({
     uri,
     credentials: 'same-origin',
     fetchOptions
-  })
+  });
 
   const authLink = setContext((_, { headers }) => {
     return {
@@ -19,8 +19,8 @@ function create ({ fetchOptions }, token) {
         ...headers,
         token
       }
-    }
-  })
+    };
+  });
 
   const isBrowser = typeof window !== 'undefined';
 
@@ -29,27 +29,30 @@ function create ({ fetchOptions }, token) {
     ssrMode: !isBrowser,
     link: authLink.concat(httpLink),
     cache: new InMemoryCache()
-  })
+  });
 }
 
-export default function initApollo (options, token) {
+export default function initApollo(options, token) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (typeof window === 'undefined') {
     let fetchOptions = {
       fetch: fetch
-    }
+    };
 
-    return create({
-      ...options,
-      fetchOptions
-    }, token)
+    return create(
+      {
+        ...options,
+        fetchOptions
+      },
+      token
+    );
   }
 
   // Reuse client on the client-side
   if (!apolloClient) {
-    apolloClient = create(options, token)
+    apolloClient = create(options, token);
   }
 
-  return apolloClient
+  return apolloClient;
 }

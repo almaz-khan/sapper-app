@@ -3,9 +3,9 @@
 </script>
 
 <style>
-	.wrapper {
-		font-weight: 300;
-		padding: 0 1em;
+  .wrapper {
+    font-weight: 300;
+    padding: 0 1em;
   }
 
   .row {
@@ -34,11 +34,11 @@
   }
 
   .red {
-    border-bottom: 2px solid rgba(255, 0, 0, .3);
+    border-bottom: 2px solid rgba(255, 0, 0, 0.3);
   }
 
   .blue {
-    border-bottom: 2px solid rgba(0, 0, 255, .3);
+    border-bottom: 2px solid rgba(0, 0, 255, 0.3);
   }
 
   .player {
@@ -94,15 +94,17 @@
 </style>
 
 <div class="wrapper">
-	{#each games as game}
+  {#each games as game}
     <div class="row">
       <div class="team blue">
         <div class="players">
           <span class="player defense">
-            {game.blue.defense.firstName} {game.blue.defense.lastName.slice(0, 1).toUpperCase()}.
+            {game.blue.defense.firstName}
+            {game.blue.defense.lastName.slice(0, 1).toUpperCase()}.
           </span>
           <span class="player offense">
-            {game.blue.offense.firstName} {game.blue.offense.lastName.slice(0, 1).toUpperCase()}.
+            {game.blue.offense.firstName}
+            {game.blue.offense.lastName.slice(0, 1).toUpperCase()}.
           </span>
         </div>
         <div class="score">{game.blue.score}</div>
@@ -112,10 +114,12 @@
         <div class="score">{game.red.score}</div>
         <div class="players">
           <span class="player offense">
-            {game.red.offense.firstName} {game.red.offense.lastName.slice(0, 1).toUpperCase()}.
+            {game.red.offense.firstName}
+            {game.red.offense.lastName.slice(0, 1).toUpperCase()}.
           </span>
           <span class="player defense">
-            {game.red.defense.firstName} {game.red.defense.lastName.slice(0, 1).toUpperCase()}.
+            {game.red.defense.firstName}
+            {game.red.defense.lastName.slice(0, 1).toUpperCase()}.
           </span>
         </div>
       </div>

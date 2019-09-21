@@ -2,6 +2,4 @@
 
 </style>
 
-<div>
-  Functionality is not ready yet
-</div>
+<div>Functionality is not ready yet</div>

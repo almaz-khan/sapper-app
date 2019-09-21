@@ -1,5 +1,5 @@
 <script>
-  import TeamInput from './TeamInput.svelte'
+  import TeamInput from './TeamInput.svelte';
 
   export let addGame;
   export let players;
@@ -9,7 +9,7 @@
     endDate: '',
     source: 'graphQlApp',
     metadata: null
-  }
+  };
 
   let game = {
     ...defaultGame,
@@ -19,13 +19,13 @@
     blue: {
       score: 0
     }
-  }
+  };
 
   const handleSubmit = () => {
     game = {
       ...game,
       endDate: new Date()
-    }
+    };
     addGame(game);
 
     game = {
@@ -38,17 +38,17 @@
         score: 0,
         ...game.blue
       }
-    }
-  }
+    };
+  };
 
   const handleChange = () => {
     if (!game.startDate) {
       game = {
         ...game,
         startDate: new Date()
-      }
+      };
     }
-  }
+  };
 </script>
 
 <style>
@@ -61,13 +61,13 @@
     display: flex;
   }
 
-	.red {
-    border-bottom: 2px solid rgba(255, 0, 0, .3);
+  .red {
+    border-bottom: 2px solid rgba(255, 0, 0, 0.3);
     flex-direction: row-reverse;
   }
 
   .blue {
-    border-bottom: 2px solid rgba(0, 0, 255, .3);
+    border-bottom: 2px solid rgba(0, 0, 255, 0.3);
   }
 
   button {
@@ -80,7 +80,7 @@
     }
 
     .blue {
-      border-top: 2px solid rgba(0, 0, 255, .3);
+      border-top: 2px solid rgba(0, 0, 255, 0.3);
     }
 
     .blue {
@@ -108,7 +108,5 @@
     </div>
   </div>
 
-  <button type=submit>
-    Submit
-  </button>
+  <button type="submit">Submit</button>
 </form>

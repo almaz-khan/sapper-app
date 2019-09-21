@@ -1,6 +1,6 @@
 <script context="module">
-  import initApollo from '../lib/initApollo'
-  import getLoggedInUser from '../lib/checkLoggedIn'
+  import initApollo from '../lib/initApollo';
+  import getLoggedInUser from '../lib/checkLoggedIn';
 
   export async function preload(_, session) {
     const client = initApollo({}, session.token);
@@ -9,7 +9,7 @@
 
     return {
       user
-    }
+    };
   }
 </script>
 
@@ -21,18 +21,18 @@
 </script>
 
 <style>
-	main {
-		position: relative;
-		max-width: 56em;
-		background-color: white;
-		padding: 2em;
-		margin: 0 auto;
+  main {
+    position: relative;
+    max-width: 56em;
+    background-color: white;
+    padding: 2em;
+    margin: 0 auto;
     box-sizing: border-box;
   }
 
   @media (max-width: 700px) {
     main {
-      padding: .5em;
+      padding: 0.5em;
     }
   }
 
@@ -69,7 +69,7 @@
   <div class="container">
     <div class="content">
       <main>
-        <slot></slot>
+        <slot />
       </main>
     </div>
   </div>

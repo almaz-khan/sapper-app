@@ -1,6 +1,6 @@
 <script context="module">
-  import initApollo from '../lib/initApollo'
-  import getLoggedInUser from '../lib/checkLoggedIn'
+  import initApollo from '../lib/initApollo';
+  import getLoggedInUser from '../lib/checkLoggedIn';
 
   export async function preload(_, session) {
     const client = initApollo({}, session.token);
@@ -8,16 +8,16 @@
     const { loggedInUser } = await getLoggedInUser(client);
 
     if (loggedInUser && loggedInUser.username) {
-			return this.redirect(302, '/');
-		}
+      return this.redirect(302, '/');
+    }
   }
 </script>
 
 <script>
-  import { mutate } from 'svelte-apollo'
+  import { mutate } from 'svelte-apollo';
   import { stores } from '@sapper/app';
-  import { SIGN_IN } from '../schemas/signin'
-  import redirect from '../lib/redirect'
+  import { SIGN_IN } from '../schemas/signin';
+  import redirect from '../lib/redirect';
 
   const { session } = stores();
   const client = initApollo({}, session.token);
@@ -37,10 +37,10 @@
       if (signIn) {
         $session.token = signIn.token;
         client.cache.reset().then(() => {
-          redirect({res: null}, '/');
+          redirect({ res: null }, '/');
         });
       }
-    } catch(error) {
+    } catch (error) {
       // TODO
     }
   }
@@ -63,4 +63,3 @@
   </div>
   <button type="submit">Sign In</button>
 </form>
-

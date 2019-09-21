@@ -4,49 +4,49 @@
 </script>
 
 <style>
-	nav {
-		border-bottom: 1px solid rgba(255,62,0,0.1);
-		font-weight: 300;
+  nav {
+    border-bottom: 1px solid rgba(255, 62, 0, 0.1);
+    font-weight: 300;
     padding: 0 1em;
     position: relative;
-	}
+  }
 
-	ul {
-		margin: 0;
-		padding: 0;
-	}
+  ul {
+    margin: 0;
+    padding: 0;
+  }
 
-	/* clearfix */
-	ul::after {
-		content: '';
-		display: block;
-		clear: both;
-	}
+  /* clearfix */
+  ul::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 
-	li {
-		display: block;
-		float: left;
-	}
+  li {
+    display: block;
+    float: left;
+  }
 
-	.selected {
-		position: relative;
-		display: inline-block;
-	}
+  .selected {
+    position: relative;
+    display: inline-block;
+  }
 
-	.selected::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		background-color: rgb(255,62,0);
-		display: block;
-		bottom: -1px;
-	}
+  .selected::after {
+    position: absolute;
+    content: '';
+    width: calc(100% - 1em);
+    height: 2px;
+    background-color: rgb(255, 62, 0);
+    display: block;
+    bottom: -1px;
+  }
 
-	a {
-		text-decoration: none;
-		padding: 1em 0.5em;
-		display: block;
+  a {
+    text-decoration: none;
+    padding: 1em 0.5em;
+    display: block;
   }
 
   .user {
@@ -66,17 +66,31 @@
 </style>
 
 <nav>
-	<ul>
-		<li><a class='{segment === undefined ? "selected" : ""}' href='.'>games</a></li>
+  <ul>
+    <li>
+      <a class={segment === undefined ? 'selected' : ''} href=".">games</a>
+    </li>
     {#if !loggedInUser || !loggedInUser.username}
-      <li><a class='{segment === 'signin' ? "selected" : ""}' href='/signin'>sign in</a></li>
-      <li><a class='{segment === 'signup' ? "selected" : ""}' href='/signup'>sign up</a></li>
+      <li>
+        <a class={segment === 'signin' ? 'selected' : ''} href="/signin">
+          sign in
+        </a>
+      </li>
+      <li>
+        <a class={segment === 'signup' ? 'selected' : ''} href="/signup">
+          sign up
+        </a>
+      </li>
     {:else}
-      <li><a class='{segment === 'games' ? "selected" : ""}' href='/games/new'>add game</a></li>
+      <li>
+        <a class={segment === 'games' ? 'selected' : ''} href="/games/new">
+          add game
+        </a>
+      </li>
     {/if}
-	</ul>
+  </ul>
   {#if loggedInUser && loggedInUser.username}
-    <div class="user" title="{loggedInUser.username}">
+    <div class="user" title={loggedInUser.username}>
       {loggedInUser.username.slice(0, 1)}
     </div>
   {/if}
