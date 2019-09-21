@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+import gql from 'graphql-tag';
 
 export default async (apolloClient) => {
   return apolloClient
@@ -10,7 +10,7 @@ export default async (apolloClient) => {
           email
         }
       }
-    `
+     `
     })
     .then(({ data }) => ({ loggedInUser: data.getUser }))
     .catch(() => ({ loggedInUser: {} }));

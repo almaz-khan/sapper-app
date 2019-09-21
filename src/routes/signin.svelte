@@ -1,32 +1,27 @@
 <script context="module">
   import initApollo from '../lib/initApollo'
   import getLoggedInUser from '../lib/checkLoggedIn'
-  import parseCookies from '../lib/apollo'
 
   export async function preload(_, session) {
-    const client = initApollo({
-      getToken: () => parseCookies(session).token
-    });
+    const client = initApollo({}, session.token);
 
     const { loggedInUser } = await getLoggedInUser(client);
 
     if (loggedInUser && loggedInUser.username) {
 			return this.redirect(302, '/');
 		}
-
-    return {
-      client
-    }
   }
 </script>
 
 <script>
   import { mutate } from 'svelte-apollo'
+  import { stores } from '@sapper/app';
   import { SIGN_IN } from '../schemas/signin'
   import redirect from '../lib/redirect'
-  import cookie from 'cookie'
 
-  export let client;
+  const { session } = stores();
+  const client = initApollo({}, session.token);
+
   let email = '';
   let password = '';
 
@@ -40,10 +35,7 @@
       const signIn = data && data.data && data.data.signIn;
 
       if (signIn) {
-        document.cookie = cookie.serialize('token', signIn.token, {
-          maxAge: 30 * 24 * 60 * 60 // 30 days
-        });
-
+        $session.token = signIn.token;
         client.cache.reset().then(() => {
           redirect({res: null}, '/');
         });

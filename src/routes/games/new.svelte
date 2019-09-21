@@ -1,13 +1,10 @@
 <script context="module">
   import initApollo from '../../lib/initApollo'
   import getLoggedInUser from '../../lib/checkLoggedIn'
-  import parseCookies from '../../lib/apollo'
   import { GET_PLAYERS } from '../../schemas/players'
 
-  export async function preload(_, session) {
-    const client = initApollo({
-      getToken: () => parseCookies(session).token
-    });
+  export async function preload(_, { token }) {
+    const client = initApollo({}, token);
 
     const { loggedInUser } = await getLoggedInUser(client);
 
@@ -20,7 +17,6 @@
     });
 
     return {
-      client,
       cache
     }
   }
@@ -30,9 +26,12 @@
   import { mutate, restore, query } from 'svelte-apollo'
   import { ADD_GAME } from '../../schemas/games'
   import GameForm from '../../components/GameForm.svelte'
+  import { stores } from '@sapper/app';
 
-  export let client;
   export let cache;
+
+  const { session } = stores();
+  const client = initApollo({}, session.token);
 
   restore(client, GET_PLAYERS, cache.data);
   const players = query(client, { query: GET_PLAYERS });

@@ -1,12 +1,9 @@
 <script context="module">
   import initApollo from '../lib/initApollo'
   import getLoggedInUser from '../lib/checkLoggedIn'
-  import parseCookies from '../lib/apollo'
 
   export async function preload(_, session) {
-    const client = initApollo({
-      getToken: () => parseCookies(session).token
-    });
+    const client = initApollo({}, session.token);
 
     const user = await getLoggedInUser(client);
 
