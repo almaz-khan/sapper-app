@@ -1,7 +1,7 @@
 <script context="module">
   import initApollo from '../lib/initApollo';
   import { GET_GAMES } from '../schemas/games';
-  import moment from 'moment';
+  import dayjs from 'dayjs';
 
   export async function preload(_, { token }) {
     const client = initApollo({}, token);
@@ -11,9 +11,9 @@
       variables: {
         query: {
           startDate: {
-            gte: moment()
+            gte: dayjs()
               .subtract(100, 'days')
-              .format(moment.defaultFormatUtc)
+              .format()
           }
         }
       }
