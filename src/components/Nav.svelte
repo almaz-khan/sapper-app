@@ -1,6 +1,15 @@
 <script>
   export let segment;
   export let loggedInUser;
+
+  let hidden = false;
+  let lastScroll = 0;
+  const handleScroll = () => {
+    const scroll = window.pageYOffset;
+
+    hidden = scroll > 50 && scroll > lastScroll;
+    lastScroll = scroll;
+  };
 </script>
 
 <style>
@@ -8,7 +17,18 @@
     border-bottom: 1px solid rgba(255, 62, 0, 0.1);
     font-weight: 300;
     padding: 0 1em;
-    position: relative;
+    height: var(--nav-h);
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 1;
+    transform: none;
+    transition: transform 0.2s;
+    background: white;
+  }
+
+  .hidden {
+    transform: translate(0, calc(-100% - 1rem));
   }
 
   ul {
@@ -65,7 +85,9 @@
   }
 </style>
 
-<nav>
+<svelte:window on:scroll={handleScroll} />
+
+<nav class:hidden>
   <ul>
     <li>
       <a class={segment === undefined ? 'selected' : ''} href=".">games</a>

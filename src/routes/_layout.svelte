@@ -37,40 +37,16 @@
   }
 
   .wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .menu {
-    flex: 0 1 auto;
-  }
-
-  .container {
-    flex: 1 0 auto;
-    position: relative;
-  }
-
-  .content {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: absolute;
-    overflow: auto;
+    padding-top: var(--nav-h);
   }
 </style>
 
 <div class="wrapper">
-  <div class="menu">
+  <header class="menu">
     <Nav {segment} {...user} />
-  </div>
+  </header>
 
-  <div class="container">
-    <div class="content">
-      <main>
-        <slot />
-      </main>
-    </div>
-  </div>
+  <main>
+    <slot />
+  </main>
 </div>
