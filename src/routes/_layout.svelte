@@ -25,28 +25,22 @@
     position: relative;
     max-width: 56em;
     background-color: white;
-    padding: 2em;
+    padding: var(--nav-h) 2em 2em;
     margin: 0 auto;
     box-sizing: border-box;
   }
 
   @media (max-width: 700px) {
     main {
-      padding: 0.5em;
+      padding: var(--nav-h) 0.5em 0.5em;
     }
-  }
-
-  .wrapper {
-    padding-top: var(--nav-h);
   }
 </style>
 
-<div class="wrapper">
-  <header class="menu">
-    <Nav {segment} {...user} />
-  </header>
+<header class="menu">
+  <Nav {segment} {...user} />
+</header>
 
-  <main>
-    <slot />
-  </main>
-</div>
+<main>
+  <slot />
+</main>
